@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { PageShell, PageHeader } from "@/components/page-shell";
 import { team } from "@/lib/team";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
+import { MotionLink } from "@/components/motion/motion-link";
 
 export const metadata: Metadata = {
   title: "About",
@@ -25,43 +26,52 @@ export default function AboutPage() {
       />
 
       <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-plum">The team</p>
-        <h2 className="max-w-3xl font-display text-4xl leading-tight md:text-5xl">
-          Real people. Real classrooms.
-        </h2>
-        <div className="mt-14 grid gap-8 md:grid-cols-2">
+        <Reveal>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-plum">
+            The team
+          </p>
+          <h2 className="max-w-3xl font-display text-4xl leading-tight md:text-5xl">
+            Real people. Real classrooms.
+          </h2>
+        </Reveal>
+        <StaggerGroup className="mt-14 grid gap-8 md:grid-cols-2">
           {team.map((m) => (
-            <article key={m.name} className="rounded-3xl border border-border bg-card p-8">
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-secondary/40">
-                <Image
-                  src={m.image}
-                  alt={`${m.name}, ${m.role} at Sylabi`}
-                  width={1024}
-                  height={1024}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <h3 className="mt-6 font-display text-2xl">{m.name}</h3>
-              <p className="mt-1 text-sm uppercase tracking-widest text-muted-foreground">
-                {m.role}
-              </p>
-              <p className="mt-4 text-muted-foreground">{m.bio}</p>
-            </article>
+            <StaggerItem
+              key={m.name}
+              className="rounded-3xl border border-border bg-card p-8 transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <article>
+                <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-secondary/40">
+                  <Image
+                    src={m.image}
+                    alt={`${m.name}, ${m.role} at Sylabi`}
+                    width={1024}
+                    height={1024}
+                    className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                  />
+                </div>
+                <h3 className="mt-6 font-display text-2xl">{m.name}</h3>
+                <p className="mt-1 text-sm uppercase tracking-widest text-muted-foreground">
+                  {m.role}
+                </p>
+                <p className="mt-4 text-muted-foreground">{m.bio}</p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       <section className="border-y border-border bg-secondary/40">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 py-24 md:py-32 lg:grid-cols-[1fr_1.4fr]">
-          <div>
+          <Reveal>
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-plum">
               Our story
             </p>
             <h2 className="font-display text-4xl leading-tight md:text-5xl">
               Why we started Sylabi.
             </h2>
-          </div>
-          <div className="space-y-5 text-lg text-muted-foreground">
+          </Reveal>
+          <Reveal delay={0.12} className="space-y-5 text-lg text-muted-foreground">
             <p>
               In 2023, half of our final-year computer science class failed a compulsory course
               because the exam covered three topics that weren&apos;t in the syllabus most of us had
@@ -78,25 +88,27 @@ export default function AboutPage() {
               they&apos;re being tested on — and every faculty deserves the tools to keep their
               curriculum honest.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-24">
-        <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-primary p-10 text-primary-foreground md:flex-row md:items-center">
+        <Reveal className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-primary p-10 text-primary-foreground md:flex-row md:items-center">
           <div>
             <h3 className="font-display text-3xl">We&apos;re hiring — and always listening.</h3>
             <p className="mt-2 text-primary-foreground/70">
               Educators, engineers and student ambassadors welcome.
             </p>
           </div>
-          <Link
+          <MotionLink
             href="/contact"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 rounded-full bg-amber px-6 py-3 text-sm font-medium text-ink"
           >
             Contact us <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+          </MotionLink>
+        </Reveal>
       </section>
     </PageShell>
   );

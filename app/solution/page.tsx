@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -15,6 +14,9 @@ import {
   Clock,
 } from "lucide-react";
 import { PageShell, PageHeader } from "@/components/page-shell";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
+import { MotionLink } from "@/components/motion/motion-link";
+import { DiffMockup } from "@/components/visuals/diff-mockup";
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -95,16 +97,41 @@ export default function SolutionPage() {
         lede="Sylabi meets students, study groups, lecturers and faculties where they are — from the first syllabus upload to full-department curriculum intelligence."
       />
 
+      <section className="border-b border-border bg-secondary/40">
+        <div className="mx-auto grid max-w-7xl gap-14 px-6 py-24 md:py-32 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+          <Reveal>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-plum">
+              See it in action
+            </p>
+            <h2 className="font-display text-4xl leading-tight md:text-5xl">
+              Every gap, weight shift and overlap — laid out instantly.
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground">
+              Pick any two syllabi and Sylabi renders a live diff in seconds: green for overlaps,
+              amber for gaps, plum for weight shifts.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1} y={36}>
+            <DiffMockup />
+          </Reveal>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-plum">
-          Who we serve
-        </p>
-        <h2 className="max-w-3xl font-display text-4xl leading-tight md:text-5xl">
-          Tailored to your role in the learning journey.
-        </h2>
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <Reveal>
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-plum">
+            Who we serve
+          </p>
+          <h2 className="max-w-3xl font-display text-4xl leading-tight md:text-5xl">
+            Tailored to your role in the learning journey.
+          </h2>
+        </Reveal>
+        <StaggerGroup className="mt-14 grid gap-6 md:grid-cols-2">
           {audiences.map(({ icon: Icon, title, body, perks }) => (
-            <div key={title} className="rounded-3xl border border-border bg-card p-8">
+            <StaggerItem
+              key={title}
+              className="rounded-3xl border border-border bg-card p-8 transition hover:-translate-y-1 hover:shadow-md"
+            >
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-amber/20 text-plum">
                 <Icon className="h-5 w-5" />
               </span>
@@ -118,59 +145,68 @@ export default function SolutionPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       <section className="border-y border-border bg-secondary/40">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 py-24 md:py-32 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <Image
-            src="/syllabus-docs.jpg"
-            alt="Syllabus documents on a desk"
-            width={1280}
-            height={960}
-            className="aspect-[4/3] w-full rounded-3xl object-cover shadow-lg"
-          />
+          <Reveal y={36}>
+            <Image
+              src="/syllabus-docs.jpg"
+              alt="Syllabus documents on a desk"
+              width={1280}
+              height={960}
+              className="aspect-[4/3] w-full rounded-3xl object-cover shadow-lg transition duration-500 hover:scale-[1.02]"
+            />
+          </Reveal>
           <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-plum">
-              Core capabilities
-            </p>
-            <h2 className="font-display text-4xl leading-tight md:text-5xl">
-              Everything you need in one app.
-            </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              Whether you&apos;re prepping for your first CA or mapping an entire faculty, Sylabi brings
-              comparison, analysis and study planning into one workflow.
-            </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <Reveal>
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-plum">
+                Core capabilities
+              </p>
+              <h2 className="font-display text-4xl leading-tight md:text-5xl">
+                Everything you need in one app.
+              </h2>
+              <p className="mt-5 text-lg text-muted-foreground">
+                Whether you&apos;re prepping for your first CA or mapping an entire faculty, Sylabi
+                brings comparison, analysis and study planning into one workflow.
+              </p>
+            </Reveal>
+            <StaggerGroup className="mt-8 grid gap-4 sm:grid-cols-2">
               {capabilities.map(({ icon: Icon, t, b }) => (
-                <div key={t} className="rounded-2xl border border-border bg-card p-5">
+                <StaggerItem
+                  key={t}
+                  className="rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:shadow-md"
+                >
                   <Icon className="h-5 w-5 text-sage" />
                   <p className="mt-3 font-medium">{t}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{b}</p>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-24">
-        <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-border bg-card p-10 md:flex-row md:items-center">
+        <Reveal className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-border bg-card p-10 md:flex-row md:items-center">
           <div>
             <h3 className="font-display text-3xl">Ready to compare your course?</h3>
             <p className="mt-2 text-muted-foreground">
               Tell us your school and department — we&apos;ll get you a first comparison within 48 hours.
             </p>
           </div>
-          <Link
+          <MotionLink
             href="/contact"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground"
           >
             Contact us <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+          </MotionLink>
+        </Reveal>
       </section>
     </PageShell>
   );

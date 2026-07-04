@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BookOpen, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { MotionLink } from "@/components/motion/motion-link";
 
 const links = [
   { href: "/", label: "Home" },
@@ -34,19 +36,28 @@ export function SiteNav() {
             <Link
               key={l.href}
               href={l.href}
-              className={`transition hover:text-foreground ${isActive(l.href) ? "text-foreground" : ""}`}
+              className={`relative py-1 transition hover:text-foreground ${isActive(l.href) ? "text-foreground" : ""}`}
             >
               {l.label}
+              {isActive(l.href) && (
+                <motion.span
+                  layoutId="nav-underline"
+                  className="absolute -bottom-1 left-0 right-0 h-px bg-foreground"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
             </Link>
           ))}
         </nav>
 
-        <Link
+        <MotionLink
           href="/contact"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
           className="hidden rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground shadow-sm transition hover:brightness-95 md:inline-flex"
         >
           Contact us
-        </Link>
+        </MotionLink>
 
         <button
           type="button"
@@ -59,29 +70,37 @@ export function SiteNav() {
         </button>
       </div>
 
-      {open && (
-        <div className="border-t border-border bg-background md:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col px-6 py-4">
-            {links.map((l) => (
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden border-t border-border bg-background md:hidden"
+          >
+            <nav className="mx-auto flex max-w-7xl flex-col px-6 py-4">
+              {links.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className={`py-3 text-base text-muted-foreground transition hover:text-foreground ${isActive(l.href) ? "text-foreground" : ""}`}
+                >
+                  {l.label}
+                </Link>
+              ))}
               <Link
-                key={l.href}
-                href={l.href}
+                href="/contact"
                 onClick={() => setOpen(false)}
-                className={`py-3 text-base text-muted-foreground transition hover:text-foreground ${isActive(l.href) ? "text-foreground" : ""}`}
+                className="mt-3 inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-medium text-accent-foreground"
               >
-                {l.label}
+                Contact us
               </Link>
-            ))}
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-3 inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-medium text-accent-foreground"
-            >
-              Contact us
-            </Link>
-          </nav>
-        </div>
-      )}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
