@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { BookOpen, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MotionLink } from "@/components/motion/motion-link";
@@ -25,9 +26,7 @@ export function SiteNav() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
         <Link href="/" className="flex shrink-0 items-center gap-2 font-display text-xl" onClick={() => setOpen(false)}>
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-primary-foreground">
-            <BookOpen className="h-4 w-4" />
-          </span>
+          <Image src="/sylabi-logo.png" alt="Sylabi" width={32} height={32} className="h-8 w-8 rounded-full" />
           Sylabi
         </Link>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const primaryLinks = [
   { href: "/solution", label: "Solution" },
@@ -22,7 +23,10 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 py-14 text-sm text-muted-foreground">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
-            <p className="font-display text-xl text-foreground">Sylabi</p>
+            <div className="flex items-center gap-2 font-display text-xl text-foreground">
+              <Image src="/sylabi-logo.png" alt="Sylabi" width={32} height={32} className="h-8 w-8 rounded-full" />
+              Sylabi
+            </div>
             <p className="mt-3 max-w-xs text-sm">
               Syllabus intelligence for tertiary students — compare, understand, and choose your courses with clarity.
             </p>
