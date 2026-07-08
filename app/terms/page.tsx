@@ -70,8 +70,8 @@ export default function TermsPage() {
             <h2 className="font-display text-2xl">9. Contact</h2>
             <p>
               Questions?{" "}
-              <a className="text-plum underline" href="mailto:hello@sylabi.app">
-                hello@sylabi.app
+              <a className="text-plum underline" href="mailto:tochukwu@sylabi.site">
+                tochukwu@sylabi.site
               </a>
             </p>
           </div>

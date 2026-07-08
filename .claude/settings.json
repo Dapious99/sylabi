@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs grep -liE \"linkedin\\\\.com|x\\\\.com/|twitter\\\\.com|facebook\\\\.com|instagram\\\\.com|dicebear|ui-avatars|gravatar\")",
+      "Bash(find app *)",
+      "Bash(grep -rn \"fetch\\(\\\\|axios\\\\|api/\" app/contact/)",
+      "Bash(python -c \"print\\('n/a'\\)\")",
+      "Bash(npx tsc *)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(npm run *)",
+      "Bash(echo \"started with pid $!\")",
+      "Read(//tmp/**)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000 --max-time 5)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://127.0.0.1:3000 --max-time 15)",
+      "Bash(curl -s http://127.0.0.1:3000/about --max-time 15)",
+      "Bash(wmic process *)",
+      "Bash(tasklist /FI \"IMAGENAME eq node.exe\" /V)",
+      "Bash(taskkill //PID 12268 //F)",
+      "Bash(taskkill //PID 16360 //F)",
+      "Bash(taskkill //PID 14052 //F)"
+    ]
+  }
+}

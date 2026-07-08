@@ -34,21 +34,38 @@ function validate(data: FormData): Partial<Record<Fields, string>> {
   return errors;
 }
 
+const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/tochukwu@sylabi.site";
+
 export function ContactForm() {
   const [errors, setErrors] = useState<Partial<Record<Fields, string>>>({});
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const nextErrors = validate(fd);
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       return;
     }
     setErrors({});
-    setSent(true);
-    e.currentTarget.reset();
+    setSubmitting(true);
+    try {
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: fd,
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSent(true);
+      form.reset();
+    } catch {
+      setErrors({ message: "Something went wrong — please try again or email us directly." });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -76,6 +93,9 @@ export function ContactForm() {
           <h2 className="font-display text-3xl">Send us a message</h2>
           <p className="mt-2 text-muted-foreground">All fields marked * are required.</p>
           <form onSubmit={onSubmit} noValidate className="mt-8 grid gap-5">
+            <input type="hidden" name="_subject" value="New message from the Sylabi contact form" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
             <Field label="Name *" name="name" error={errors.name} />
             <Field label="Email *" name="email" type="email" error={errors.email} />
             <Field
@@ -107,9 +127,11 @@ export function ContactForm() {
             </div>
             <button
               type="submit"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+              disabled={submitting}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Send message <ArrowRight className="h-4 w-4" />
+              {submitting ? "Sending…" : "Send message"}
+              {!submitting && <ArrowRight className="h-4 w-4" />}
             </button>
           </form>
         </>

@@ -27,19 +27,19 @@ export default function ContactPage() {
           <ContactRow
             icon={Mail}
             label="Email"
-            value="hello@sylabi.app"
-            href="mailto:hello@sylabi.app"
+            value="tochukwu@sylabi.site"
+            href="mailto:tochukwu@sylabi.site"
           />
           <ContactRow
             icon={Phone}
             label="Phone"
-            value="+234 800 000 0000"
-            href="tel:+2348000000000"
+            value="+234 903 726 0061"
+            href="tel:+2349037260061"
           />
           <ContactRow
             icon={MapPin}
             label="Headquarters"
-            value="Yaba, Lagos, Nigeria"
+            value="2d Umunogo Street, Achara Layout, Enugu"
             sub="Sylabi Technologies Ltd · RC pending"
           />
           <div className="rounded-3xl border border-border bg-card p-6">
@@ -47,10 +47,10 @@ export default function ContactPage() {
               Press & partnerships
             </p>
             <a
-              href="mailto:partners@sylabi.app"
+              href="mailto:tochukwu@sylabi.site"
               className="mt-2 block font-display text-xl hover:underline"
             >
-              partners@sylabi.app
+              tochukwu@sylabi.site
             </a>
           </div>
         </aside>

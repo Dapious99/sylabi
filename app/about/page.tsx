@@ -55,6 +55,43 @@ export default function AboutPage() {
                   {m.role}
                 </p>
                 <p className="mt-4 text-muted-foreground">{m.bio}</p>
+                {m.socials && (
+                  <div className="mt-5 flex items-center gap-3">
+                    {m.socials.twitter && (
+                      <a
+                        href={m.socials.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${m.name} on X`}
+                        className="grid h-9 w-9 place-items-center rounded-full bg-secondary/60 text-foreground transition hover:bg-amber/20 hover:text-plum"
+                      >
+                        <XIcon className="h-4 w-4" />
+                      </a>
+                    )}
+                    {m.socials.facebook && (
+                      <a
+                        href={m.socials.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${m.name} on Facebook`}
+                        className="grid h-9 w-9 place-items-center rounded-full bg-secondary/60 text-foreground transition hover:bg-amber/20 hover:text-plum"
+                      >
+                        <FacebookIcon className="h-4 w-4" />
+                      </a>
+                    )}
+                    {m.socials.linkedin && (
+                      <a
+                        href={m.socials.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${m.name} on LinkedIn`}
+                        className="grid h-9 w-9 place-items-center rounded-full bg-secondary/60 text-foreground transition hover:bg-amber/20 hover:text-plum"
+                      >
+                        <LinkedinIcon className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
+                )}
               </article>
             </StaggerItem>
           ))}
@@ -111,5 +148,29 @@ export default function AboutPage() {
         </Reveal>
       </section>
     </PageShell>
+  );
+}
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.22-6.82-5.97 6.82H1.65l7.73-8.84L1.2 2.25h6.83l4.72 6.24zm-1.16 17.52h1.83L7.02 4.13H5.06z" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z" />
+    </svg>
+  );
+}
+
+function LinkedinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56z" />
+    </svg>
   );
 }

@@ -17,8 +17,8 @@ export default function PrivacyPage() {
             <p>
               Sylabi (&quot;Sylabi&quot;, &quot;we&quot;, &quot;us&quot;) is an edtech company building syllabus intelligence
               tools for tertiary students in Africa. Reach us at{" "}
-              <a className="text-plum underline" href="mailto:hello@sylabi.app">
-                hello@sylabi.app
+              <a className="text-plum underline" href="mailto:tochukwu@sylabi.site">
+                tochukwu@sylabi.site
               </a>
               .
             </p>
@@ -75,8 +75,8 @@ export default function PrivacyPage() {
             <p>
               You may request a copy of your data, correct it, or delete your account at any time by
               emailing{" "}
-              <a className="text-plum underline" href="mailto:hello@sylabi.app">
-                hello@sylabi.app
+              <a className="text-plum underline" href="mailto:tochukwu@sylabi.site">
+                tochukwu@sylabi.site
               </a>
               . We respond within 30 days.
             </p>
