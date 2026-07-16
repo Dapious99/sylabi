@@ -1,6 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+    </svg>
+  );
+}
+
 const primaryLinks = [
   { href: "/solution", label: "Solution" },
   { href: "/technology", label: "Technology" },
@@ -37,7 +45,18 @@ export function SiteFooter() {
         </div>
         <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Sylabi. Built for students, by students.</p>
-          <p className="text-xs">Made with care in Lagos, Nigeria.</p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://x.com/Sylabi_health"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Sylabi on X"
+              className="hover:text-foreground transition-colors"
+            >
+              <XIcon className="h-4 w-4" />
+            </a>
+                     <p className="text-xs">Made with care in Lagos, Nigeria.</p>
+          </div>
         </div>
       </div>
     </footer>

@@ -3,6 +3,14 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { PageShell, PageHeader } from "@/components/page-shell";
 import { ContactForm } from "./contact-form";
 
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+    </svg>
+  );
+}
+
 export const metadata: Metadata = {
   title: "Contact",
   description:
@@ -51,6 +59,44 @@ export default function ContactPage() {
               className="mt-2 block font-display text-xl hover:underline"
             >
               tochukwu@sylabi.site
+            </a>
+          </div>
+
+          <div className="space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Follow us on X
+            </p>
+            <a
+              href="https://x.com/Sylabi_health"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 transition hover:opacity-80"
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-amber/20 text-plum">
+                <XIcon className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  Company
+                </p>
+                <p className="font-display text-xl">@Sylabi_health</p>
+              </div>
+            </a>
+            <a
+              href="https://x.com/deyunblackboi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 transition hover:opacity-80"
+            >
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-amber/20 text-plum">
+                <XIcon className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  CEO
+                </p>
+                <p className="font-display text-xl">@deyunblackboi</p>
+              </div>
             </a>
           </div>
         </aside>
